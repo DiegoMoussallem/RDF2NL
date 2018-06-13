@@ -1,116 +1,111 @@
-package org.aksw.rdf2de.triple2nl;
-
-// package org.aksw.rdf2pt.triple2nl;
-/// *
-// * #%L
-// * Triple2NL
-// * %%
-// * Copyright (C) 2015 Agile Knowledge Engineering and Semantic Web (AKSW)
-// * %%
-// * Licensed under the Apache License, Version 2.0 (the "License");
-// * you may not use this file except in compliance with the License.
-// * You may obtain a copy of the License at
-// *
-// * http://www.apache.org/licenses/LICENSE-2.0
-// *
-// * Unless required by applicable law or agreed to in writing, software
-// * distributed under the License is distributed on an "AS IS" BASIS,
-// * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// * See the License for the specific language governing permissions and
-// * limitations under the License.
-// * #L%
-// */
-/// **
-// *
-// */
+//package org.aksw.rdf2de.triple2nl;
 //
-// import java.io.ByteArrayInputStream;
-// import java.util.ArrayList;
-// import java.util.Collection;
-// import java.util.HashSet;
-// import java.util.Iterator;
-// import java.util.LinkedHashMap;
-// import java.util.List;
-// import java.util.Map;
-// import java.util.Map.Entry;
-// import java.util.Set;
+///// *
+//// * #%L
+//// * Triple2NL
+//// * %%
+//// * Copyright (C) 2015 Agile Knowledge Engineering and Semantic Web (AKSW)
+//// * %%
+//// * Licensed under the Apache License, Version 2.0 (the "License");
+//// * you may not use this file except in compliance with the License.
+//// * You may obtain a copy of the License at
+//// *
+//// * http://www.apache.org/licenses/LICENSE-2.0
+//// *
+//// * Unless required by applicable law or agreed to in writing, software
+//// * distributed under the License is distributed on an "AS IS" BASIS,
+//// * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//// * See the License for the specific language governing permissions and
+//// * limitations under the License.
+//// * #L%
+//// */
+///// **
+//// *
+//// */
 //
-// import org.aksw.jena_sparql_api.core.QueryExecutionFactory;
-// import org.aksw.jena_sparql_api.http.QueryExecutionFactoryHttp;
-// import org.dllearner.kb.sparql.SparqlEndpoint;
-// import org.jgrapht.alg.ConnectivityInspector;
-// import org.jgrapht.graph.DefaultDirectedGraph;
-// import org.jgrapht.graph.DefaultEdge;
+//import java.io.ByteArrayInputStream;
+//import java.util.ArrayList;
+//import java.util.Collection;
+//import java.util.HashSet;
+//import java.util.Iterator;
+//import java.util.LinkedHashMap;
+//import java.util.List;
+//import java.util.Map;
+//import java.util.Map.Entry;
+//import java.util.Set;
 //
-// import simplenlg.features.Feature;
-// import simplenlg.features.InternalFeature;
-// import simplenlg.framework.CoordinatedPhraseElement;
-// import simplenlg.framework.DocumentElement;
-// import simplenlg.framework.NLGElement;
-// import simplenlg.framework.NLGFactory;
-// import simplenlg.lexicon.Lexicon;
-// import simplenlg.phrasespec.SPhraseSpec;
-// import simplenlg.realiser.english.Realiser;
+//import org.aksw.jena_sparql_api.core.QueryExecutionFactory;
+//import org.aksw.jena_sparql_api.http.QueryExecutionFactoryHttp;
+//import org.dllearner.kb.sparql.SparqlEndpoint;
+//import org.jgrapht.alg.ConnectivityInspector;
+//import org.jgrapht.graph.DefaultDirectedGraph;
+//import org.jgrapht.graph.DefaultEdge;
 //
-// import com.google.common.collect.HashMultimap;
-// import com.google.common.collect.Lists;
-// import com.google.common.collect.Multimap;
-// import org.apache.jena.graph.Node;
-// import org.apache.jena.graph.NodeFactory;
-// import org.apache.jena.graph.Triple;
-// import org.apache.jena.rdf.model.Model;
-// import org.apache.jena.rdf.model.ModelFactory;
-// import org.apache.jena.rdf.model.Statement;
-// import org.apache.jena.rdf.model.StmtIterator;
-// import org.apache.jena.vocabulary.RDF;
+//import simplenlg.features.Feature;
+//import simplenlg.features.InternalFeature;
+//import simplenlg.framework.CoordinatedPhraseElement;
+//import simplenlg.framework.DocumentElement;
+//import simplenlg.framework.NLGElement;
+//import simplenlg.framework.NLGFactory;
+//import simplenlg.lexicon.Lexicon;
+//import simplenlg.phrasespec.SPhraseSpec;
+//import simplenlg.realiser.english.Realiser;
 //
-/// **
-// * @author Lorenz Buehmann
-// *
-// */
-// public class DocumentGeneratorGerman {
+//import com.google.common.collect.HashMultimap;
+//import com.google.common.collect.Lists;
+//import com.google.common.collect.Multimap;
+//import org.apache.jena.graph.Node;
+//import org.apache.jena.graph.NodeFactory;
+//import org.apache.jena.graph.Triple;
+//import org.apache.jena.rdf.model.Model;
+//import org.apache.jena.rdf.model.ModelFactory;
+//import org.apache.jena.rdf.model.Statement;
+//import org.apache.jena.rdf.model.StmtIterator;
+//import org.apache.jena.vocabulary.RDF;
 //
-// private TripleConverter tripleConverter;
-// private NLGFactory nlgFactory;
-// private Realiser realiser;
+///// **
+//// * @author Lorenz Buehmann
+//// *
+//// */
+//public class DocumentGeneratorGerman {
 //
-// private boolean useAsWellAsCoordination = true;
+//	private TripleConverter tripleConverter;
+//	private NLGFactory nlgFactory;
+//	private Realiser realiser;
 //
-// public DocumentGeneratorGerman(SparqlEndpoint endpoint, String
-// cacheDirectory) {
-// this(endpoint, cacheDirectory, Lexicon.getDefaultLexicon());
-// }
+//	private boolean useAsWellAsCoordination = true;
 //
-// public DocumentGeneratorGerman(SparqlEndpoint endpoint, String
-// cacheDirectory, Lexicon lexicon) {
-// this(new QueryExecutionFactoryHttp(endpoint.getURL().toString(),
-// endpoint.getDefaultGraphURIs()), cacheDirectory, lexicon);
-// }
+//	public DocumentGeneratorGerman(SparqlEndpoint endpoint, String cacheDirectory) {
+//		this(endpoint, cacheDirectory, Lexicon.getDefaultLexicon());
+//	}
 //
-// public DocumentGeneratorGerman(QueryExecutionFactory qef, String
-// cacheDirectory, Lexicon lexicon) {
-// tripleConverter = new TripleConverter(qef, null, null, cacheDirectory, null,
-// lexicon);
-// nlgFactory = new NLGFactory(lexicon);
-// realiser = new Realiser(lexicon);
-// }
+//	public DocumentGeneratorGerman(SparqlEndpoint endpoint, String cacheDirectory, Lexicon lexicon) {
+//		this(new QueryExecutionFactoryHttp(endpoint.getURL().toString(), endpoint.getDefaultGraphURIs()),
+//				cacheDirectory, lexicon);
+//	}
 //
-// public String generateDocument(Model model) {
-// Set<Triple> triples = asTriples(model);
-// return generateDocument(triples);
-// }
+//	public DocumentGeneratorGerman(QueryExecutionFactory qef, String cacheDirectory, Lexicon lexicon) {
+//		tripleConverter = new TripleConverter(qef, null, null, cacheDirectory, null, lexicon);
+//		nlgFactory = new NLGFactory(lexicon);
+//		realiser = new Realiser(lexicon);
+//	}
 //
-// private Set<Triple> asTriples(Model model) {
-// Set<Triple> triples = new HashSet<>((int) model.size());
-// StmtIterator iterator = model.listStatements();
-// while (iterator.hasNext()) {
-// Statement statement = iterator.next();
-// triples.add(statement.asTriple());
-// }
-// return triples;
-// }
+//	public String generateDocument(Model model) {
+//		Set<Triple> triples = asTriples(model);
+//		return generateDocument(triples);
+//	}
 //
-// public String generateDocument(Set<Triple> documentTriples) {
+//	private Set<Triple> asTriples(Model model) {
+//		Set<Triple> triples = new HashSet<>((int) model.size());
+//		StmtIterator iterator = model.listStatements();
+//		while (iterator.hasNext()) {
+//			Statement statement = iterator.next();
+//			triples.add(statement.asTriple());
+//		}
+//		return triples;
+//	}
+//
+//	public String generateDocument(Set<Triple> documentTriples) {
 // DefaultDirectedGraph<Node, DefaultEdge> graph = asGraph(documentTriples);
 //
 // //divide the document into paragraphs for each connected component in the
@@ -231,7 +226,7 @@ package org.aksw.rdf2de.triple2nl;
 // return paragraphText;
 // }
 //
-// /**
+//	/**
 // * @param documentTriples the set of triples
 // * @param subject2Triples a map that contains for each node the triples in
 // which it occurs as subject
@@ -273,51 +268,41 @@ package org.aksw.rdf2de.triple2nl;
 // return sortedTriples;
 // }
 //
-// private Map<Node, Collection<Triple>> groupBySubject(Set<Triple> triples){
-// Multimap<Node, Triple> subject2Triples = HashMultimap.create();
-// for (Triple triple : triples) {
-// subject2Triples.put(triple.getSubject(), triple);
-// }
-// return subject2Triples.asMap();
-// }
+//	private Map<Node, Collection<Triple>> groupBySubject(Set<Triple> triples) {
+//		Multimap<Node, Triple> subject2Triples = HashMultimap.create();
+//		for (Triple triple : triples) {
+//			subject2Triples.put(triple.getSubject(), triple);
+//		}
+//		return subject2Triples.asMap();
+//	}
 //
-// private DefaultDirectedGraph<Node, DefaultEdge> asGraph(Set<Triple> triples){
-// DefaultDirectedGraph<Node, DefaultEdge> graph = new
-// DefaultDirectedGraph<>(DefaultEdge.class);
-// for (Triple triple : triples) {
-// //we have to omit type triples to get connected subgraphs later on
-// if(!triple.predicateMatches(RDF.type.asNode())){
-// graph.addVertex(triple.getSubject());
-// graph.addVertex(triple.getObject());
-// graph.addEdge(triple.getSubject(), triple.getObject());
-// }
-// }
-// return graph;
-// }
+//	private DefaultDirectedGraph<Node, DefaultEdge> asGraph(Set<Triple> triples) {
+//		DefaultDirectedGraph<Node, DefaultEdge> graph = new DefaultDirectedGraph<>(DefaultEdge.class);
+//		for (Triple triple : triples) {
+//			// we have to omit type triples to get connected subgraphs later on
+//			if (!triple.predicateMatches(RDF.type.asNode())) {
+//				graph.addVertex(triple.getSubject());
+//				graph.addVertex(triple.getObject());
+//				graph.addEdge(triple.getSubject(), triple.getObject());
+//			}
+//		}
+//		return graph;
+//	}
 //
-// public static void main(String[] args) throws Exception {
-// String triples =
-// "@prefix : <http://dbpedia.org/resource/> ."
-// + "@prefix dbo: <http://dbpedia.org/ontology/> ."
-// + "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> ."
-// + ":Albert_Einstein a dbo:Physican, dbo:Philosopher;"
-// + "dbo:birthPlace :Ulm;"
-// + "dbo:birthDate \"1879-03-14\"^^xsd:date ;"
-// + "dbo:studiedIn :Frankfurt ."
-// + ":Ulm a dbo:City;"
-// + "dbo:country :Germany;"
-// + "dbo:federalState :Baden_Württemberg ."
-// + ":Leipzig a dbo:City;"
-// + "dbo:country :Germany;"
-// + "dbo:federalState :Saxony .";
+//	public static void main(String[] args) throws Exception {
+//		String triples = "@prefix : <http://dbpedia.org/resource/> ." + "@prefix dbo: <http://dbpedia.org/ontology/> ."
+//				+ "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> ."
+//				+ ":Albert_Einstein a dbo:Physican, dbo:Philosopher;" + "dbo:birthPlace :Ulm;"
+//				+ "dbo:birthDate \"1879-03-14\"^^xsd:date ;" + "dbo:studiedIn :Frankfurt ." + ":Ulm a dbo:City;"
+//				+ "dbo:country :Germany;" + "dbo:federalState :Baden_Württemberg ." + ":Leipzig a dbo:City;"
+//				+ "dbo:country :Germany;" + "dbo:federalState :Saxony .";
 //
-// Model model = ModelFactory.createDefaultModel();
-// model.read(new ByteArrayInputStream(triples.getBytes()), null, "TURTLE");
+//		Model model = ModelFactory.createDefaultModel();
+//		model.read(new ByteArrayInputStream(triples.getBytes()), null, "TURTLE");
 //
-// DocumentGeneratorGerman gen = new
-// DocumentGeneratorGerman(SparqlEndpoint.getEndpointDBpedia(), "cache");
-// String document = gen.generateDocument(model);
-// System.out.println(document);
-// }
+//		DocumentGeneratorGerman gen = new DocumentGeneratorGerman(SparqlEndpoint.getEndpointDBpedia(), "cache");
+//		String document = gen.generateDocument(model);
+//		System.out.println(document);
+//	}
 //
-// }
+//}

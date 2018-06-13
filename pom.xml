@@ -244,6 +244,7 @@
 
 
   <modules>
+  	<module>core</module>
     <module>it</module>
     <module>es</module>
     <module>de</module>

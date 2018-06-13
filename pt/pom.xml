@@ -7,9 +7,8 @@
 	<artifactId>RDF2NL</artifactId>
 	<version>1.0-SNAPSHOT</version>
   </parent>
-	<groupId>rdf2pt</groupId>
-	<artifactId>pt</artifactId>
-  <name>pt</name>
+	<artifactId>rdf2pt</artifactId>
+ 	<version>1.0</version>
   <packaging>jar</packaging>
   <url>http://maven.apache.org</url>
   <properties>

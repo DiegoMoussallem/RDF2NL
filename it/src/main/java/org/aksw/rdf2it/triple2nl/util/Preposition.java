@@ -30,7 +30,7 @@ import java.util.HashSet;
  */
 public class Preposition extends HashSet<String> {
 
-	private static final String filename = "/Users/diegomoussallem/Documents/workspace/RDF2NL/Portuguese/src/main/resources/preposition_list.txt";
+	private static final String filename = "preposition_list.txt";
 
 	public Preposition(InputStream is) {
 		try (BufferedReader bufRdr = new BufferedReader(new InputStreamReader(is))) {

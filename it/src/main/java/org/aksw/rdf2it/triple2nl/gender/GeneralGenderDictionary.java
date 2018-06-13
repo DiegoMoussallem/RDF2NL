@@ -13,8 +13,8 @@ import org.springframework.core.io.ClassPathResource;
  */
 public class GeneralGenderDictionary extends GenderDictionary {
 
-	public static String MALE_GENDER_FILE_LOCATION = "/Users/diegomoussallem/Documents/workspace/RDF2NL/Portuguese/src/main/resources/gender/male.txt";
-	public static String FEMALE_GENDER_FILE_LOCATION = "/Users/diegomoussallem/Documents/workspace/RDF2NL/Portuguese/src/main/resources/gender/female.txt";
+	public static String MALE_GENDER_FILE_LOCATION = "gender/male.txt";
+	public static String FEMALE_GENDER_FILE_LOCATION = "gender/female.txt";
 
 	public GeneralGenderDictionary() {
 		try {
