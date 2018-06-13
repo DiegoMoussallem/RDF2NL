@@ -1,6 +1,5 @@
 target/
 log/
-bin/
 .classpath
 .settings/
 .project
@@ -9,7 +8,6 @@ bin/
 AIDA-YAGO2-dataset.tsv
 *.ttl
 lib/aida.jar
-*.txt
 indexdbpedia*
 pt/target/
 it/target/
